@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour
     
     public float prevJumpH = 3f;
 
+    public float holdJump;
+
     public float drag = 15f;
 
     public float momentum = 1f;
@@ -69,7 +71,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mTxt = momentum.ToString("######.#");
+        mTxt = momentum.ToString("######.#") + "      " + holdJump.ToString();
         MomTxt.text = mTxt;
 
         state = PlayerStates.Idle;
@@ -108,8 +110,16 @@ public class PlayerScript : MonoBehaviour
         {
             jumpInputSTR = true;
             jumpInputTimer = 0.2f;
+            holdJump = 0;
 
         }
+
+        if (Input.GetButton("Jump") && !onGround)
+        {
+            holdJump += Time.deltaTime;
+        }
+        
+        
 
         if (jumpInputSTR)
         {
