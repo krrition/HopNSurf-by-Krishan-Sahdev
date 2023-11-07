@@ -1,0 +1,41 @@
+* Platforms and finish line type levels. Does not currently satisfy because of the preciseness.
+
+	-Double jump
+	-A precise hold jump system
+	-Backend magnetic system
+	-Platforms that the player creates under the feet
+	-No platforms but one big platform and speed and dodging and shooting is the key
+	-Gliding Mechanics
+	-less speed but more hopping
+	-gliding is hard to acheive.
+	-
+
+
+* Shooting is in slow mo and at the end of the level you see all of the enemies' heads explode at once.
+
+* Score depends on if you shot everybody.
+
+* Maybe a bullet choosing systems to shoot with the correlating color.
+
+* Lawbreakers Wraith dagger dash and melee.
+
+* Jumppad system.
+
+Week 1
+
+- Jump height Variability, Slow Down Mechanic
+
+
+Week 2
+
+- Levels
+
+
+Week 3
+
+- UI
+
+
+Week 4
+
+- Juice, environment and art
