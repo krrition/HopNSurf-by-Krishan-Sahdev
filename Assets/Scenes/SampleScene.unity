@@ -1187,6 +1187,7 @@ MonoBehaviour:
   gravity: -40
   jumpH: 2
   prevJumpH: 3
+  holdJump: 0
   drag: 15
   momentum: 1
   noMom: 0

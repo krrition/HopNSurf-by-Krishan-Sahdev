@@ -118,8 +118,24 @@ public class PlayerScript : MonoBehaviour
         {
             holdJump += Time.deltaTime;
         }
-        
-        
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            holdJump = 0;
+        }
+
+        if (onGround && holdJump >= 0.5 && momentum>1)
+        {
+            jumpH += (momentum * 10);
+            momentum = momentum / 2;
+            upVelo.y = Mathf.Sqrt(jumpH * -2f * gravity);
+            jumpH = prevJumpH;
+            jumpH = jumpH / 2;
+            holdJump = 0;
+
+        }
+
+
 
         if (jumpInputSTR)
         {
