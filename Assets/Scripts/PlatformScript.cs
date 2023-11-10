@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformScript : MonoBehaviour
 {
-    public float timer = 0.5f;
+    public float timer = 2f;
     
     // Start is called before the first frame update
     void Start()
