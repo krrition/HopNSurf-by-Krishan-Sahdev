@@ -48,42 +48,79 @@
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\PlatformScript.cs" />
      <Compile Include="Assets\Scripts\LookScript.cs" />
+     <Compile Include="Assets\Scripts\BeaconScript.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+     <Folder Include="Assets\Thirdparty\Ciathyza" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <Folder Include="Assets\TextMesh Pro\Sprites" />
+     <Folder Include="Assets\BOXOPHOBIC\User" />
      <Folder Include="Assets\TextMesh Pro\Resources\Sprite Assets" />
      <Folder Include="Assets\Materials\Materials" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <Folder Include="Assets\BOXOPHOBIC" />
+     <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Demo\Textures" />
+     <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Extended.shader" />
      <Folder Include="Assets\TextMesh Pro\Resources\Fonts &amp; Materials" />
+     <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Demo\Settings" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+     <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <Folder Include="Assets\TextMesh Pro\Resources" />
+     <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Textures" />
+     <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Demo\Meshes" />
+     <Folder Include="Assets\Free Stylized Skybox\Panoramic" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Materials\HDRP" />
+     <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Demo\Materials" />
      <Folder Include="Assets\TextMesh Pro" />
+     <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended" />
+     <Folder Include="Assets\Thaleah_PixelFont" />
      <None Include="Assets\Things To Add.txt" />
+     <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Blend.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+     <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+     <Folder Include="Assets\BOXOPHOBIC\Utils" />
+     <None Include="Assets\Free Stylized Skybox\ReadMe.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+     <Folder Include="Assets\Free Stylized Skybox\CubeMap\Materials" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+     <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Materials" />
+     <Folder Include="Assets\Free Stylized Skybox\CubeMap\Textures" />
+     <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Materials\URP" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+     <Folder Include="Assets\Free Stylized Skybox\Panoramic\Textures" />
      <Folder Include="Assets\TextMesh Pro\Shaders" />
      <Folder Include="Assets\Scenes" />
      <Folder Include="Assets\TextMesh Pro\Resources\Style Sheets" />
      <Folder Include="Assets\TextMesh Pro\Fonts" />
+     <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials" />
+     <Folder Include="Assets\Free Stylized Skybox\Panoramic\Materials" />
+     <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Demo" />
      <Folder Include="Assets\Scripts" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Materials\Standard" />
+     <Folder Include="Assets\Thaleah_PixelFont\Materials" />
+     <Folder Include="Assets\Free Stylized Skybox" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <Folder Include="Assets\Materials" />
+     <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Demo\Prefabs" />
+     <Folder Include="Assets\Thirdparty" />
+     <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Demo\Prototype Materials Demo" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+     <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Template" />
      <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
      <Folder Include="Assets\TextMesh Pro\Documentation" />
+     <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Demo" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+     <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Functions" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne.json" />
+     <Folder Include="Assets\Free Stylized Skybox\CubeMap" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
      <Folder Include="Assets\Prefabs" />
      <Reference Include="UnityEngine">
@@ -778,6 +815,18 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
+      <Project>{07e15a7f-6304-34ec-4c58-bb7aa415c3fd}</Project>
+      <Name>Boxophobic.Utils.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.Utils.Editor.csproj">
+      <Project>{965e900d-2830-4865-a026-048e626cf420}</Project>
+      <Name>Boxophobic.Utils.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.SkyboxCubemapExtended.Editor.csproj">
+      <Project>{5ddabdee-ccca-5e1a-debf-513486671282}</Project>
+      <Name>Boxophobic.SkyboxCubemapExtended.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

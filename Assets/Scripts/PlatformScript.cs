@@ -16,6 +16,8 @@ public class PlatformScript : MonoBehaviour
     void Update()
     {
 
+
+        //Delete after Timer
         timer -= Time.deltaTime;
 
         if (timer <= 0)

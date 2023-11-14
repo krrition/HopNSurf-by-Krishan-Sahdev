@@ -65,6 +65,10 @@ public class PlayerScript : MonoBehaviour
     
     public float x;
 
+    public float tempGrav;
+
+    public bool tempGravOn;
+
 
     // Start is called before the first frame update
     void Start()
@@ -90,7 +94,7 @@ public class PlayerScript : MonoBehaviour
         x = Input.GetAxisRaw("Horizontal");
 
         //Text Mesh UI
-        mTxt = momentum.ToString("######.#") + "      " + holdJump.ToString() + "      " + z;
+        mTxt = momentum.ToString("######.#") + "      " + holdJump.ToString() + "      " + Input.GetAxisRaw("Vertical");
         MomTxt.text = mTxt;
         
         
@@ -110,7 +114,16 @@ public class PlayerScript : MonoBehaviour
         //Depleting Momentum in Air When Holding Back. DEPENDS ON ORIENTATION????????????????
         if (!onGround && Input.GetAxisRaw("Vertical") < 0)
         {
-            z = -momentum/2;
+            z = momentum;
+            tempGravOn = true;
+            tempGrav -= momentum;
+
+        }
+
+        if (tempGravOn && onGround)
+        {
+            tempGravOn = false;
+            tempGrav = 0f;
         }
 
         //Multiplying and Plugging in Movement Inputs
@@ -287,7 +300,7 @@ public class PlayerScript : MonoBehaviour
 
 
         //Plugging in Gravity
-        upVelo.y += gravity * Time.deltaTime;
+        upVelo.y += (gravity + tempGrav) * Time.deltaTime;
         PC.Move(upVelo * Time.deltaTime);
 
 
