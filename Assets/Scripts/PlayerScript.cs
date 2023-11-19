@@ -69,6 +69,16 @@ public class PlayerScript : MonoBehaviour
 
     public bool tempGravOn;
 
+    public float PltCount = 2f;
+
+    public float SloCount = 2f;
+
+    public float SloFactor = 0.5f;
+
+    public bool sloToggle;
+
+    public string[] colliderTags;
+
 
     // Start is called before the first frame update
     void Start()
@@ -79,16 +89,39 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
+
+
         //Setting Idle State
         state = PlayerStates.Idle;
-        
-        
-        //Ground Check
-        onGround = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
-        
-        
+
+
+        //Ground Check 2.0
+        Collider[] hitcollider;
+        hitcollider = Physics.OverlapSphere(groundCheck.position, groundDist, groundMask);
+
+        colliderTags = new string[hitcollider.Length];
+
+        for (int i = 0; i < hitcollider.Length; i++)
+        {
+            colliderTags[i] = hitcollider[i].gameObject.tag;
+        }
+
+        if (hitcollider.Length > 0)
+        {
+            onGround = true;
+        }
+
+        else
+        {
+            onGround = false;
+        }
+
+
+
+
+        /*onGround = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);*/
+
+
         //Getting Movement Inputs
         z = Input.GetAxisRaw("Vertical") * momentum;
         x = Input.GetAxisRaw("Horizontal");
@@ -96,22 +129,22 @@ public class PlayerScript : MonoBehaviour
         //Text Mesh UI
         mTxt = momentum.ToString("######.#") + "      " + holdJump.ToString() + "      " + Input.GetAxisRaw("Vertical");
         MomTxt.text = mTxt;
-        
-        
+
+
         //Proper Air Strafing
         if (Input.GetAxisRaw("Horizontal") < 0 && !onGround)
         {
             z = momentum;
-            x = -momentum/3;
+            x = -momentum / 3;
         }
-        
+
         else if (Input.GetAxisRaw("Horizontal") > 0 && !onGround)
         {
             z = momentum;
-            x = momentum/3;
+            x = momentum / 3;
         }
 
-        //Depleting Momentum in Air When Holding Back. DEPENDS ON ORIENTATION????????????????
+        //Diving When Holding Down
         if (!onGround && Input.GetAxisRaw("Vertical") < 0)
         {
             z = momentum;
@@ -132,13 +165,13 @@ public class PlayerScript : MonoBehaviour
         if (move.magnitude >= 0.1f)
         {
             state = PlayerStates.Run;
-            
+
             //Friction on Ground and No Friction in Air
             if (onGround)
             {
                 Speed = drag;
             }
-            
+
             else if (!onGround)
             {
                 Speed = airSpeed;
@@ -146,7 +179,7 @@ public class PlayerScript : MonoBehaviour
 
             PC.Move(move * (Speed * Time.deltaTime));
         }
-        
+
         //Adding Momentum
         if (!onGround && move.z <= 0)
         {
@@ -154,7 +187,7 @@ public class PlayerScript : MonoBehaviour
             PC.Move(move * (Speed * Time.deltaTime));
         }
 
-        
+
         //Jump Input Storing
         if (Input.GetButtonDown("Jump"))
         {
@@ -163,13 +196,13 @@ public class PlayerScript : MonoBehaviour
             holdJump = 0;
 
         }
-        
+
         //Hold Jump Input Storing
         if (Input.GetButton("Jump") && !onGround)
         {
             holdJump += Time.deltaTime;
         }
-        
+
         //Resetting Hold Jump Input
         if (Input.GetButtonUp("Jump"))
         {
@@ -177,13 +210,13 @@ public class PlayerScript : MonoBehaviour
         }
 
         //Hold to Jump Higher
-        if (onGround && holdJump >= 0.5 && momentum>1)
+        if (onGround && holdJump >= 0.5 && momentum > 1 && Input.GetAxisRaw("Vertical") > 0)
         {
-            jumpH += momentum * (holdJump *10);
-            momentum = momentum / (holdJump*4);
+            jumpH += momentum * (holdJump * 10);
+            momentum = momentum / (holdJump * 4);
             upVelo.y = Mathf.Sqrt(jumpH * -2f * gravity);
             jumpH = prevJumpH;
-            jumpH = jumpH / (holdJump*4);
+            jumpH = jumpH / (holdJump * 4);
             holdJump = 0;
 
         }
@@ -210,8 +243,8 @@ public class PlayerScript : MonoBehaviour
             momGearUp = true;
 
         }
-        
-        
+
+
         //Straight Idle Jump
         else if (jumpInputSTR && onGround && Input.GetAxisRaw("Vertical") <= 0 && State == PlayerStates.Idle)
         {
@@ -221,7 +254,7 @@ public class PlayerScript : MonoBehaviour
             jumpInputTimer = 0.2f;
         }
 
-        
+
         //Setting Momentum and Jump Height Higher
         if (momGearUp)
         {
@@ -230,7 +263,7 @@ public class PlayerScript : MonoBehaviour
             momGearUp = false;
         }
 
-        
+
         //Resetting Momentum if Just Running- Failed Attempt?
         if (momentum > 1f && momTimerBool && State == PlayerStates.Run)
         {
@@ -241,19 +274,19 @@ public class PlayerScript : MonoBehaviour
         {
             momTimerBool = false;
             momTimer = 0.2f;
-            
+
         }
 
         //Depleting Momentum if Just Running
         if (momentum > 1f && momTimerBool && momTimer <= 0 && State == PlayerStates.Run)
         {
-            momentum = prevMomentum/2;
+            momentum = prevMomentum / 2;
             jumpH = prevJumpH / 2;
             /*momTimerBool = false;*/
             momTimer = 0.5f;
         }
 
-        
+
         //Setting Momentum and Jump Height to Minimum Values for Bugs
         if (momentum < 1f && State == PlayerStates.Run)
         {
@@ -261,32 +294,11 @@ public class PlayerScript : MonoBehaviour
             jumpH = 3f;
         }
 
-        /*else if (momTimer <= 0 && !onGround)
-        {
-            momTimer = 0.1f;
-        }
-        */
-        
-        /*else if (momTimer <= 0 && onGround && momentum > 1.5f && !jumpInputSTR)
-        {
-            momentum = prevMomentum;
-            momTimer = 0.1f;
-        }*/
-
-        //Depleting Momentum if Holding Back in Air
-        /*if (Input.GetAxisRaw("Vertical") < 0 && State == PlayerStates.Jump)
-        {
-            momentum = prevMomentum/2;
-            jumpH = prevJumpH / 2;
-            z = -momentum / 2;
-        }*/
-        
-        
 
         //Completing the Jump Arc Even if Inputs are Null
         if (Input.GetAxisRaw("Vertical") == 0 && State == PlayerStates.Jump)
         {
-            
+
             momentum = prevMomentum;
             jumpH = prevJumpH;
 
@@ -310,12 +322,61 @@ public class PlayerScript : MonoBehaviour
             state = PlayerStates.Jump;
         }
 
-        
+
         //Creating Platform
-        if (Input.GetMouseButton(1) && !onGround)
+        if (Input.GetMouseButton(1) && !onGround && PltCount > 0)
         {
             Instantiate(Platform, PltSpwnLoc.transform.position, PltSpwnLoc.rotation);
+            PltCount -= Time.deltaTime;
+
         }
+
+        //Slow Mo Toggle
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !sloToggle && SloCount > 0)
+        {
+            sloToggle = true;
+        }
+        
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && sloToggle || SloCount <=0)
+        {
+            sloToggle = false;
+        }
+
+        if (sloToggle && SloCount > 0)
+        {
+            Time.timeScale = SloFactor;
+            Time.fixedDeltaTime = Time.timeScale * .02f;
+        }
+
+        //Implementing Slo Mo Based on Toggle
+        if (sloToggle)
+        {
+            SloCount -= Time.unscaledDeltaTime;
+        }
+
+        if (!sloToggle)
+        {
+            Time.timeScale += (1f / 2) * Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+        }
+
+        //Check Collision and Meters Properly Reset
+        foreach (string tag in colliderTags)
+        {
+
+            if (onGround && PltCount != 2 && tag == "GenFloor")
+            {
+                PltCount = 2;
+            }
+
+            if (onGround && SloCount != 2 && tag == "GenFloor")
+            {
+                SloCount = 2;
+            }
+
+        }
+        
+        
 
         //Plugging in State
         SetState(state);
@@ -366,5 +427,7 @@ public class PlayerScript : MonoBehaviour
         Run,
         Jump,
     }
+
+
     
 }
