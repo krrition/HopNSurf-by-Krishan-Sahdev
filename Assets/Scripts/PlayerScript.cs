@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
 
+    public Camera cam;
     
     public CharacterController PC;
 
@@ -78,6 +79,14 @@ public class PlayerScript : MonoBehaviour
     public bool sloToggle;
 
     public string[] colliderTags;
+
+    public Transform firePoint;
+
+    public GameObject proj;
+
+    public float projVelo = 50;
+
+    public Vector3 destination;
 
 
     // Start is called before the first frame update
@@ -321,10 +330,31 @@ public class PlayerScript : MonoBehaviour
         {
             state = PlayerStates.Jump;
         }
+        
+        //Creating Projectiles
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.55f, 0));
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                destination = hit.point;
+            }
+
+            else
+            {
+                destination = ray.GetPoint(100);
+            }
+
+            Vector3 momPoint = new Vector3(firePoint.position.x, firePoint.position.y, firePoint.position.z);
+            var projObj = Instantiate(proj, momPoint, firePoint.rotation);
+            projObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * (projVelo * momentum);
+        }
 
 
         //Creating Platform
-        if (Input.GetMouseButton(1) && !onGround && PltCount > 0)
+        if (Input.GetButton("Fire2") && !onGround && PltCount > 0)
         {
             Instantiate(Platform, PltSpwnLoc.transform.position, PltSpwnLoc.rotation);
             PltCount -= Time.deltaTime;
