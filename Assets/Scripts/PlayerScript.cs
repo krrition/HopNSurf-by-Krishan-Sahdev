@@ -350,6 +350,7 @@ public class PlayerScript : MonoBehaviour
             Vector3 momPoint = new Vector3(firePoint.position.x, firePoint.position.y, firePoint.position.z);
             var projObj = Instantiate(proj, momPoint, firePoint.rotation);
             projObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * (projVelo * momentum);
+            Destroy(projObj, 5f);
         }
 
 
