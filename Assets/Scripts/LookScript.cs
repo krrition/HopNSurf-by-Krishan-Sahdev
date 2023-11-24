@@ -21,8 +21,8 @@ public class LookScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * (sens * Time.deltaTime);
-        float mouseY = Input.GetAxis("Mouse Y") * (sens * Time.deltaTime);
+        float mouseX = Input.GetAxis("Mouse X") * (sens * Time.unscaledDeltaTime);
+        float mouseY = Input.GetAxis("Mouse Y") * (sens * Time.unscaledDeltaTime);
 
         xRot -= mouseY;
         xRot = Mathf.Clamp(xRot, -90f, 90f);

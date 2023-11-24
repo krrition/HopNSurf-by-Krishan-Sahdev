@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -70,9 +71,13 @@ public class PlayerScript : MonoBehaviour
 
     public bool tempGravOn;
 
-    public float PltCount = 2f;
+    public float PltCount = 1f;
 
+    public Slider PltSlider;
+    
     public float SloCount = 2f;
+
+    public Slider SloSlider;
 
     public float SloFactor = 0.5f;
 
@@ -87,6 +92,8 @@ public class PlayerScript : MonoBehaviour
     public float projVelo = 50;
 
     public Vector3 destination;
+
+    
 
 
     // Start is called before the first frame update
@@ -395,9 +402,9 @@ public class PlayerScript : MonoBehaviour
         foreach (string tag in colliderTags)
         {
 
-            if (onGround && PltCount != 2 && tag == "GenFloor")
+            if (onGround && PltCount != 1 && tag == "GenFloor")
             {
-                PltCount = 2;
+                PltCount = 1;
             }
 
             if (onGround && SloCount != 2 && tag == "GenFloor")
@@ -407,7 +414,11 @@ public class PlayerScript : MonoBehaviour
 
         }
         
-        
+        //Implementing UI Sliders
+        PltSlider.value = PltCount;
+        SloSlider.value = SloCount * (0.5f);
+
+
 
         //Plugging in State
         SetState(state);
