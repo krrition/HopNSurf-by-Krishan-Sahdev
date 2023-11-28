@@ -93,6 +93,7 @@
      <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Materials" />
      <Folder Include="Assets\Free Stylized Skybox\CubeMap\Textures" />
      <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Materials\URP" />
+     <Folder Include="Assets\Tutorial PopUps" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <Folder Include="Assets\Free Stylized Skybox\Panoramic\Textures" />
      <Folder Include="Assets\TextMesh Pro\Shaders" />

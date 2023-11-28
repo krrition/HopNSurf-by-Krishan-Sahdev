@@ -341,7 +341,7 @@ public class PlayerScript : MonoBehaviour
         //Creating Projectiles
         if (Input.GetButtonDown("Fire1"))
         {
-            Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.55f, 0));
+            Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.61f, 0));
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
