@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
@@ -93,12 +94,35 @@ public class PlayerScript : MonoBehaviour
 
     public Vector3 destination;
 
-    
+    public string CurScene;
+
+    public bool SloLock;
+
+    public bool ShootLock;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        CurScene = SceneManager.GetActiveScene().name;
+
+        if (CurScene == "Level 1" || CurScene == "Level 2")
+        {
+            SloLock = true;
+            ShootLock = true;
+        }
+
+        if (CurScene == "Level 3")
+        {
+            SloLock = false;
+            ShootLock = true;
+        }
+
+        if (CurScene == "Level 4")
+        {
+            SloLock = false;
+            ShootLock = false;
+        }
         
     }
 
@@ -339,25 +363,29 @@ public class PlayerScript : MonoBehaviour
         }
         
         //Creating Projectiles
-        if (Input.GetButtonDown("Fire1"))
+        if (ShootLock == false)
         {
-            Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.61f, 0));
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (Input.GetButtonDown("Fire1"))
             {
-                destination = hit.point;
-            }
+                Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.61f, 0));
+                RaycastHit hit;
 
-            else
-            {
-                destination = ray.GetPoint(100);
-            }
+                if (Physics.Raycast(ray, out hit))
+                {
+                    destination = hit.point;
+                }
 
-            Vector3 momPoint = new Vector3(firePoint.position.x, firePoint.position.y, firePoint.position.z);
-            var projObj = Instantiate(proj, momPoint, firePoint.rotation);
-            projObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * (projVelo * momentum);
-            Destroy(projObj, 5f);
+                else
+                {
+                    destination = ray.GetPoint(100);
+                }
+
+                Vector3 momPoint = new Vector3(firePoint.position.x, firePoint.position.y, firePoint.position.z);
+                var projObj = Instantiate(proj, momPoint, firePoint.rotation);
+                projObj.GetComponent<Rigidbody>().velocity =
+                    (destination - firePoint.position).normalized * (projVelo * momentum);
+                Destroy(projObj, 5f);
+            }
         }
 
 
@@ -370,32 +398,36 @@ public class PlayerScript : MonoBehaviour
         }
 
         //Slow Mo Toggle
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !sloToggle && SloCount > 0)
+        if (SloLock == false)
         {
-            sloToggle = true;
-        }
-        
-        else if (Input.GetKeyDown(KeyCode.LeftShift) && sloToggle || SloCount <=0)
-        {
-            sloToggle = false;
-        }
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !sloToggle && SloCount > 0)
+            {
+                sloToggle = true;
+            }
 
-        if (sloToggle && SloCount > 0)
-        {
-            Time.timeScale = SloFactor;
-            Time.fixedDeltaTime = Time.timeScale * .02f;
-        }
+            else if (Input.GetKeyDown(KeyCode.LeftShift) && sloToggle || SloCount <= 0)
+            {
+                sloToggle = false;
+            }
 
-        //Implementing Slo Mo Based on Toggle
-        if (sloToggle)
-        {
-            SloCount -= Time.unscaledDeltaTime;
-        }
+            if (sloToggle && SloCount > 0)
+            {
+                Time.timeScale = SloFactor;
+                Time.fixedDeltaTime = Time.timeScale * .02f;
+            }
 
-        if (!sloToggle)
-        {
-            Time.timeScale += (1f / 2) * Time.unscaledDeltaTime;
-            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+
+            //Implementing Slo Mo Based on Toggle
+            if (sloToggle)
+            {
+                SloCount -= Time.unscaledDeltaTime;
+            }
+
+            if (!sloToggle)
+            {
+                Time.timeScale += (1f / 2) * Time.unscaledDeltaTime;
+                Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+            }
         }
 
         //Check Collision and Meters Properly Reset
@@ -414,10 +446,18 @@ public class PlayerScript : MonoBehaviour
 
         }
         
-        //Implementing UI Sliders
+        //Implementing UI Sliders with Locks
         PltSlider.value = PltCount;
-        SloSlider.value = SloCount * (0.5f);
+        if (SloLock == false)
+        {
+            SloSlider.gameObject.SetActive(true);
+            SloSlider.value = SloCount * (0.5f);
+        }
 
+        else
+        {
+            SloSlider.gameObject.SetActive(false);
+        }
 
 
         //Plugging in State
