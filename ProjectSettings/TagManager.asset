@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - Proj
   - Crasher
+  - Reset
   layers:
   - Default
   - TransparentFX

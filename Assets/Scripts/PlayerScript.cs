@@ -31,8 +31,6 @@ public class PlayerScript : MonoBehaviour
 
     public float momentum = 1f;
 
-    public float noMom;
-    
     public float prevMomentum = 1f;
 
     public bool momTimerBool;
@@ -83,6 +81,9 @@ public class PlayerScript : MonoBehaviour
     public float SloFactor = 0.5f;
 
     public bool sloToggle;
+
+    public Slider ChargeSlider;
+    public Slider ChargeSlider2;
 
     public string[] colliderTags;
 
@@ -444,6 +445,11 @@ public class PlayerScript : MonoBehaviour
                 SloCount = 2;
             }
 
+            if (onGround && tag == "Reset")
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+
         }
         
         //Implementing UI Sliders with Locks
@@ -457,6 +463,20 @@ public class PlayerScript : MonoBehaviour
         else
         {
             SloSlider.gameObject.SetActive(false);
+        }
+
+
+        if (holdJump >= 0.15 && momentum > 1)
+        {
+            ChargeSlider.gameObject.SetActive(true);
+            ChargeSlider2.gameObject.SetActive(true);
+            ChargeSlider.value = holdJump * (2);
+            ChargeSlider2.value = holdJump * (2);
+        }
+        else
+        {
+            ChargeSlider.gameObject.SetActive(false);
+            ChargeSlider2.gameObject.SetActive(false);
         }
 
 
