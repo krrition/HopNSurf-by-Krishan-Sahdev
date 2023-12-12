@@ -119,7 +119,7 @@ public class PlayerScript : MonoBehaviour
             ShootLock = true;
         }
 
-        if (CurScene == "Level 4")
+        if (SceneManager.GetActiveScene().buildIndex >= 4)
         {
             SloLock = false;
             ShootLock = false;
@@ -130,8 +130,6 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         //Setting Idle State
         state = PlayerStates.Idle;
 
@@ -167,9 +165,7 @@ public class PlayerScript : MonoBehaviour
         z = Input.GetAxisRaw("Vertical") * momentum;
         x = Input.GetAxisRaw("Horizontal");
 
-        //Text Mesh UI
-        mTxt = momentum.ToString("######.#") + "      " + holdJump.ToString() + "      " + Input.GetAxisRaw("Vertical");
-        MomTxt.text = mTxt;
+        
 
 
         //Proper Air Strafing
@@ -199,6 +195,10 @@ public class PlayerScript : MonoBehaviour
             tempGravOn = false;
             tempGrav = 0f;
         }
+        
+        //Speed UI
+        mTxt = momentum.ToString("######.#");
+        
 
         //Multiplying and Plugging in Movement Inputs
         Vector3 move = transform.right * x + transform.forward * z;
@@ -220,6 +220,14 @@ public class PlayerScript : MonoBehaviour
 
             PC.Move(move * (Speed * Time.deltaTime));
         }
+
+        else
+        {
+            mTxt = "0";
+        }
+        
+        MomTxt.text = mTxt;
+        
 
         //Adding Momentum
         if (!onGround && move.z <= 0)
@@ -368,7 +376,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.61f, 0));
+                Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.55f, 0));
                 RaycastHit hit;
 
                 if (Physics.Raycast(ray, out hit))
