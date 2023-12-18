@@ -70,7 +70,7 @@ public class PlayerScript : MonoBehaviour
 
     public bool tempGravOn;
 
-    public float PltCount = 1f;
+    public float PltCount = 0.5f;
 
     public Slider PltSlider;
     
@@ -78,7 +78,7 @@ public class PlayerScript : MonoBehaviour
 
     public Slider SloSlider;
 
-    public float SloFactor = 0.5f;
+    public float SloFactor = 0.25f;
 
     public bool sloToggle;
 
@@ -101,10 +101,15 @@ public class PlayerScript : MonoBehaviour
 
     public bool ShootLock;
 
+    public TextMeshProUGUI timerTxt;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        
+
+        //Locks at the Start of Each Scene
         CurScene = SceneManager.GetActiveScene().name;
 
         if (CurScene == "Level 1" || CurScene == "Level 2")
@@ -133,7 +138,7 @@ public class PlayerScript : MonoBehaviour
         //Setting Idle State
         state = PlayerStates.Idle;
 
-
+        
         //Ground Check 2.0
         Collider[] hitcollider;
         hitcollider = Physics.OverlapSphere(groundCheck.position, groundDist, groundMask);
@@ -196,8 +201,14 @@ public class PlayerScript : MonoBehaviour
             tempGrav = 0f;
         }
         
-        //Speed UI
+        //Timer UI
+        timerTxt.text = GameManager.Mins.ToString("##") + ":" + GameManager.Secs.ToString("00");
+        
+        
+                
+        //Speed UI Part 1
         mTxt = momentum.ToString("######.#");
+        
         
 
         //Multiplying and Plugging in Movement Inputs
@@ -221,6 +232,7 @@ public class PlayerScript : MonoBehaviour
             PC.Move(move * (Speed * Time.deltaTime));
         }
 
+        //Speed UI Part 2
         else
         {
             mTxt = "0";
@@ -376,7 +388,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.55f, 0));
+                Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.57f, 0));
                 RaycastHit hit;
 
                 if (Physics.Raycast(ray, out hit))
@@ -445,7 +457,7 @@ public class PlayerScript : MonoBehaviour
 
             if (onGround && PltCount != 1 && tag == "GenFloor")
             {
-                PltCount = 1;
+                PltCount = 0.5f;
             }
 
             if (onGround && SloCount != 2 && tag == "GenFloor")
@@ -461,7 +473,7 @@ public class PlayerScript : MonoBehaviour
         }
         
         //Implementing UI Sliders with Locks
-        PltSlider.value = PltCount;
+        PltSlider.value = PltCount * (2);
         if (SloLock == false)
         {
             SloSlider.gameObject.SetActive(true);

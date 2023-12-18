@@ -47,12 +47,17 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\StartScript.cs" />
+     <Compile Include="Assets\Scripts\RestartScript.cs" />
      <Compile Include="Assets\Scripts\ShatterScript.cs" />
      <Compile Include="Assets\Scripts\PopupScript.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\PlatformScript.cs" />
+     <Compile Include="Assets\Scripts\EndTimeScript.cs" />
+     <Compile Include="Assets\Scripts\QuitScript.cs" />
      <Compile Include="Assets\Scripts\LookScript.cs" />
      <Compile Include="Assets\Scripts\BeaconScript.cs" />
      <Folder Include="Assets" />
+     <Folder Include="Assets\Scenes\Level 1" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <Folder Include="Assets\Thirdparty\Ciathyza" />
      <Folder Include="Assets\Tutorial PopUps\MP4s" />
@@ -68,10 +73,13 @@
      <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Extended.shader" />
      <Folder Include="Assets\TextMesh Pro\Resources\Fonts &amp; Materials" />
      <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Demo\Settings" />
+     <Folder Include="Assets\Scenes\Level 4" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+     <Folder Include="Assets\Scenes\Win" />
      <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <Folder Include="Assets\TextMesh Pro\Resources" />
+     <Folder Include="Assets\Scenes\Level 3" />
      <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Textures" />
      <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Demo\Meshes" />
      <Folder Include="Assets\Free Stylized Skybox\Panoramic" />
@@ -82,6 +90,7 @@
      <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended" />
      <Folder Include="Assets\Thaleah_PixelFont" />
      <None Include="Assets\Things To Add.txt" />
+     <Folder Include="Assets\Scenes\Level 2" />
      <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Blend.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <Folder Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core" />
@@ -112,6 +121,7 @@
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <Folder Include="Assets\Thirdparty\Ciathyza\Gridbox Prototype Materials\Materials\Standard" />
      <Folder Include="Assets\Thaleah_PixelFont\Materials" />
+     <Folder Include="Assets\Scenes\Title" />
      <Folder Include="Assets\Free Stylized Skybox" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <Folder Include="Assets\Materials" />

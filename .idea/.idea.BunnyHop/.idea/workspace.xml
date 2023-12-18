@@ -8,6 +8,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/QuitScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RestartScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StartScript.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -100,7 +102,9 @@
       <workItem from="1702075997393" duration="3819000" />
       <workItem from="1702166274368" duration="5426000" />
       <workItem from="1702238010737" duration="3262000" />
-      <workItem from="1702404572873" duration="7269000" />
+      <workItem from="1702404572873" duration="7971000" />
+      <workItem from="1702494565542" duration="5186000" />
+      <workItem from="1702854264697" duration="7684000" />
     </task>
     <servers />
   </component>
