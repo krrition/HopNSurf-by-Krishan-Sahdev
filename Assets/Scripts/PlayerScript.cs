@@ -130,6 +130,8 @@ public class PlayerScript : MonoBehaviour
             ShootLock = false;
         }
         
+        
+
     }
 
     // Update is called once per frame
@@ -539,6 +541,10 @@ public class PlayerScript : MonoBehaviour
         
 
     }
+    
+    
+    
+    
     
 
 

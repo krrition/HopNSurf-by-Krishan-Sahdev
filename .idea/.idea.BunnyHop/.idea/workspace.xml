@@ -8,6 +8,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EndMissScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/QuitScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RestartScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StartScript.cs" root0="FORCE_HIGHLIGHTING" />
@@ -105,6 +106,7 @@
       <workItem from="1702404572873" duration="7971000" />
       <workItem from="1702494565542" duration="5186000" />
       <workItem from="1702854264697" duration="7684000" />
+      <workItem from="1703007915755" duration="5863000" />
     </task>
     <servers />
   </component>

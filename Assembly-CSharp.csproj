@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\ShatterScript.cs" />
      <Compile Include="Assets\Scripts\PopupScript.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\EndMissScript.cs" />
      <Compile Include="Assets\Scripts\PlatformScript.cs" />
      <Compile Include="Assets\Scripts\EndTimeScript.cs" />
      <Compile Include="Assets\Scripts\QuitScript.cs" />
@@ -58,6 +59,7 @@
      <Compile Include="Assets\Scripts\BeaconScript.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scenes\Level 1" />
+     <Folder Include="Assets\Scenes\Level 5" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <Folder Include="Assets\Thirdparty\Ciathyza" />
      <Folder Include="Assets\Tutorial PopUps\MP4s" />
